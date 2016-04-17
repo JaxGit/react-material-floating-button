@@ -31,12 +31,19 @@ var Menu = React.createClass({
   },
 
   render: function render() {
+    var _this = this;
+
     var classes = getClasses(this.props);
     var buttons = getChildren(this.props.children);
 
-    var main = buttons.main && React.cloneElement(buttons.main, this.props.method !== "hover" && {
-      onClick: this.toggleMenu
-    } || {});
+    var main = buttons.main && React.cloneElement(buttons.main, {
+      onClick: function (evt) {
+        buttons.main.props.onClick();
+        if (_this.props.method === "click" && buttons.child) {
+          _this.toggleMenu(evt);
+        }
+      }
+    });
 
     return React.createElement(
       "ul",

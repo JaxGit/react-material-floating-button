@@ -19,7 +19,9 @@ var effect = 'zoomin',
 function renderMenu(){
   var component = (
     <Menu effect={effect} method={method} position={pos}>
-      <MainButton iconResting="ion-plus-round" iconActive="ion-close-round" />
+      <MainButton iconResting="ion-plus-round" iconActive="ion-close-round"
+        onClick={()=>console.log("onClick")}
+        />
       <ChildButton
         //onClick={function(e){ console.log(e); e.preventDefault(); }}
         icon="ion-social-github"

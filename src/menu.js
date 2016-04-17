@@ -34,9 +34,14 @@ var Menu = React.createClass({
     var buttons = getChildren(this.props.children);
 
     var main = buttons.main && React.cloneElement(buttons.main,
-      this.props.method !== 'hover' && {
-      onClick: this.toggleMenu
-    } || {});
+      {
+        onClick: (evt) => {
+          buttons.main.props.onClick();
+          if (this.props.method === 'click' && buttons.child) {
+            this.toggleMenu(evt);
+          }
+        }
+      });
 
     return (
       <ul className={classes}
